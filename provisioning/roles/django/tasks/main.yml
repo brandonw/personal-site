@@ -1,0 +1,22 @@
+---
+- name: Create database
+  sudo: yes
+  sudo_user: postgres
+  postgresql_db: name=personal-site
+
+- name: Create database user
+  sudo: yes
+  sudo_user: postgres
+  postgresql_user: db=personal-site name=vagrant
+
+- name: Sync DB
+  django_manage: app_path=/vagrant/personal-site command=syncdb
+
+- name: Perform migrations
+  django_manage: app_path=/vagrant/personal-site command=migrate
+
+- name: Clear existing staticfiles dir
+  file: path=/vagrant/staticfiles state=absent
+
+- name: Symlink static files to staticfiles dir
+  command: python /vagrant/personal-site/manage.py collectstatic --noinput -l -i sass

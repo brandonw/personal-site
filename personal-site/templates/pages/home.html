@@ -1,1 +1,31 @@
 {% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center heading">BRANDON WASKIEWICZ</h1>
+<p class="text-justify">I am a software developer who currently resides with his wife and two
+children just outside of Springfield, MA. Blah blah blah.</p>
+
+<h2>BLOG</h2>
+<p class="text-justify">I recently started a blog. My intention is to focus on software in general.
+I hope to document anything interseting I come across, describe (and hopefully
+explain how to fix) any issues I encounter, and give updates on any projects I
+am currently working on. It can be found <a href="{% url 'blog' %}">here</a>.
+</p>
+
+<h2>PROJECTS</h2>
+<p class="text-justify">I love everything about open source, and try to put as much of my code on
+<a href="https://www.github.com/">GitHub</a> as possible. This ranges from my
+personal dot files, to forks of popular projects that I have tweaked to my
+liking, to homegrown from-scratch projects I (and possibly some friends) have
+worked on. You can find a documented list of the projects I deem most
+interesting <a href="{% url 'projects' %}">here</a>.
+
+<h2>R&#201;SUM&#201;</h2>
+<p class="text-justify">I have made my resume available in HTML form
+<a href="{% url 'resume' %}">here</a>. It is also available to download in
+PDF form <a href="{% url 'pdfresume' %}">here</a>.</p>
+
+{% endblock %}

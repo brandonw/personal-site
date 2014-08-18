@@ -6,10 +6,10 @@
     - python
     - python-pip
     - python-dev
+    - python-psycopg2
 
 - name: Install necessary python packages
-  sudo: yes
-  pip: requirements=/vagrant/requirements/local.txt
+  pip: requirements=/vagrant/requirements/local.txt extra_args="--user"
 
 - name: Update PATH
   lineinfile: dest=/home/vagrant/.profile line='PATH="$HOME/.local/bin:$PATH"'

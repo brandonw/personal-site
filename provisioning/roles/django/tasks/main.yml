@@ -2,12 +2,12 @@
 - name: Create database
   sudo: yes
   sudo_user: postgres
-  postgresql_db: name=personal-site
+  postgresql_db: name=personal-site state=present
 
 - name: Create database user
   sudo: yes
   sudo_user: postgres
-  postgresql_user: db=personal-site name=vagrant
+  postgresql_user: db=personal-site name=vagrant state=present
 
 - name: Sync DB
   django_manage: app_path=/vagrant/personal-site command=syncdb

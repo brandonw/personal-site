@@ -7,7 +7,7 @@ from blog import views
 urlpatterns = patterns('',
     url(
         r'^$',
-        TemplateView.as_view(template_name='blog/blog_home.html'),
+        TemplateView.as_view(template_name='blog/home.html'),
         name='blog'
     ),
 )

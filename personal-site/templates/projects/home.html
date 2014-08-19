@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Projects Home{% endblock %}
+
+{% block menu %}
+
+PROJECTS MENU
+
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center heading">PROJECTS</h1>
+
+<p class="lead text-justify">The following is a pruned list of the projects I
+have open sourced, with a brief description. Click through to read a more
+in-depth summary of what the project is, as well as the reasons I worked on it,
+as well as my thought process while making it.</p>
+
+<ul class="list-unstyled">
+
+{% for project in projects %}
+    <li>
+        item
+    </li>
+{% endfor %}
+
+</ul>
+{% endblock %}

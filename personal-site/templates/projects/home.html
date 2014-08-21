@@ -4,7 +4,14 @@
 
 {% block menu %}
 
-PROJECTS MENU
+<h1 class="text-right">INDEX</h1>
+
+<ul class="list-unstyled text-right">
+{% for project in projects %}
+    <li><h4><a href="{% url 'project-detail' project.slug %}">
+            {{ project.name }}</a></h4></li>
+{% endfor %}
+</ul>
 
 {% endblock %}
 
@@ -12,18 +19,25 @@ PROJECTS MENU
 
 <h1 class="text-center heading">PROJECTS</h1>
 
-<p class="lead text-justify">The following is a pruned list of the projects I
-have open sourced, with a brief description. Click through to read a more
-in-depth summary of what the project is, as well as the reasons I worked on it,
-as well as my thought process while making it.</p>
+<p class="lead text-justify">The following is a pruned list of projects I
+have worked on with a brief description. Click through to read a more
+in-depth summary of what the project is, as well as the reasons I worked on
+it, and my thought process while making it.</p>
 
 <ul class="list-unstyled">
 
 {% for project in projects %}
     <li>
-        item
+        <h2>{{ project.name }}
+            <small><a href="{% url 'project-detail' project.slug %}">
+                check it out</a></small>
+        </h2>
+        <p>short_descr: {{ project.short_descr }}</p>
+        <p></p>
+        <img src="{{ MEDIA_URL }}{{ project.thumbnail }}" />
     </li>
 {% endfor %}
 
 </ul>
 {% endblock %}
+

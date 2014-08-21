@@ -1,7 +1,10 @@
 from django.db import models
+from os.path import splitext
+from autoslug import AutoSlugField
 
 def project_filename(project, original_name):
-    return str(project.id)
+    extension = splitext(original_name)
+    return str(project.slug) + extension[1]
 
 class Project(models.Model):
 
@@ -10,6 +13,9 @@ class Project(models.Model):
 
     # a clear name to identify what a project is
     name = models.CharField(max_length=50)
+
+    # unique slug
+    slug = AutoSlugField(populate_from='name', unique=True)
 
     # a single image used to give a preview of what the project looks like
     thumbnail = models.ImageField(upload_to=project_filename)

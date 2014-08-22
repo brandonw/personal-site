@@ -4,7 +4,7 @@
 
 {% block menu %}
 
-<h1 class="text-right">INDEX</h1>
+<h1 class="text-right">&nbsp;</h1>
 
 <ul class="list-unstyled text-right">
 {% for project in projects %}
@@ -28,13 +28,18 @@ it, and my thought process while making it.</p>
 
 {% for project in projects %}
     <li>
-        <h2>{{ project.name }}
-            <small><a href="{% url 'project-detail' project.slug %}">
-                check it out</a></small>
-        </h2>
-        <p>short_descr: {{ project.short_descr }}</p>
-        <p></p>
-        <img src="{{ MEDIA_URL }}{{ project.thumbnail }}" />
+        <h2>{{ project.name }}</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{% url 'project-detail' project.slug %}">
+                    <img src="{{ MEDIA_URL }}{{ project.thumbnail }}" />
+                </a>
+            </div>
+            <div class="col-md-8">
+                <p>short_descr: {{ project.short_descr }}</p>
+                <a href="{% url 'project-detail' project.slug %}">check it out</a>
+            </div>
+        </div>
     </li>
 {% endfor %}
 

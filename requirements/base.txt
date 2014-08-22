@@ -34,3 +34,5 @@ django-avatar==2.0
 uwsgi==2.0.6
 
 # Your custom requirements go here
+django-markupfield==1.2.1
+Markdown==2.4.1

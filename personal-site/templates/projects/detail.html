@@ -6,7 +6,7 @@
 
 <h1 class="text-center heading">{{ project.name }}</h1>
 
-<p>{{ project.full_descr }}</p>
+<p>{{ project.full_descr.rendered|safe }}</p>
 
 {% endblock %}
 

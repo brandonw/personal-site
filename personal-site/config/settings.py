@@ -51,13 +51,14 @@ class Common(Configuration):
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
+        'sorl.thumbnail', # generating thumbnails of project images
     )
 
     # Apps specific for this project go here.
     LOCAL_APPS = (
         'users',  # custom users app
-        'projects',
-        'blog',
+        'projects', # list projects i've worked on
+        'blog', # blog application
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -125,12 +126,10 @@ class Common(Configuration):
     ########## END DATABASE CONFIGURATION
 
     ########## CACHING
-    # Do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
-    # memcacheify is what's used in Production
     CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': ''
+        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
         }
     }
     ########## END CACHING
@@ -306,6 +305,10 @@ class Local(Common):
         'SHOW_TOOLBAR_CALLBACK': 'config.settings.show_toolbar',
     }
     ########## end django-debug-toolbar
+
+    ######### sorl-thumbnail
+    THUMBNAIL_DEBUG = True
+    ######## end sorl-thumbnail
 
     ########## Your local stuff: Below this line define 3rd party libary settings
 

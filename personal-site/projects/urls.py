@@ -9,7 +9,6 @@ from projects.models import Project
 urlpatterns = patterns('',
     url(r'^$',
         ListView.as_view(template_name='projects/home.html',
-                         model=Project,
                          context_object_name='projects',
                          queryset=Project.objects.order_by('priority')),
         name='projects'),

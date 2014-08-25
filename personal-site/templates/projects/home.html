@@ -16,6 +16,7 @@
 {% endblock %}
 
 {% block content %}
+{% load thumbnail %}
 
 <h1 class="text-center heading">PROJECTS</h1>
 
@@ -32,7 +33,17 @@ it, and my thought process while making it.</p>
         <div class="row">
             <div class="col-md-4">
                 <a href="{% url 'project-detail' project.slug %}">
-                    <img src="{{ MEDIA_URL }}{{ project.thumbnail }}" />
+                    {% if project.projectimage_set.count > 0 %}
+                    {% with image_url=project.projectimage_set.all.0.image %}
+                    {% thumbnail image_url "150x150" crop="center" as im %}
+                    <img src="{{ im.url }}"
+                         width="{{ im.width }}"
+                         height="{{ im.height }}" />
+                    {% empty %}
+                    <p>No preview</p>
+                    {% endthumbnail %}
+                    {% endwith %}
+                    {% endif %}
                 </a>
             </div>
             <div class="col-md-8">

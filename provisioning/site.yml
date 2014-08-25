@@ -4,6 +4,7 @@
     - common
     - nginx
     - postgresql
+    - memcached
     - python
     - compass
     - grunt

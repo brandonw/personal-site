@@ -2,9 +2,41 @@
 
 {% block title %}{{ project.name }}{% endblock %}
 
+{% block menu %}
+
+<h1 class="text-right">&nbsp;</h1>
+
+<ul class="list-unstyled text-right">
+    <li><h4><a href="{% url 'home' %}">HOME</a></h4></li>
+    <li><h4><a href="{% url 'projects' %}">PROJECT INDEX</a></h4></li>
+{% for project in projects %}
+    <li><a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
 {% block content %}
+{% load thumbnail %}
 
 <h1 class="text-center heading">{{ project.name }}</h1>
+
+{% if project.projectimage_set.count > 0 %}
+<ul class="list-unstyled">
+    {% for projectimage in project.projectimage_set.all %}
+    {% thumbnail projectimage.image "150x150" crop="center" as im %}
+    <a href="{{ projectimage.image.url }}">
+        <img class="img-thumbnail"
+             src="{{ im.url }}"
+             width="{{ im.width }}"
+             height="{{ im.height }}" />
+    </a>
+    {% empty %}
+    <p>No preview</p>
+    {% endthumbnail %}
+    {% endfor %}
+</ul>
+{% endif %}
 
 <p>{{ project.full_descr.rendered|safe }}</p>
 

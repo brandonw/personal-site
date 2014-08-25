@@ -6,10 +6,13 @@
 
 <h1 class="text-right">&nbsp;</h1>
 
-<ul class="list-unstyled text-right">
+<ul class="list-unstyled">
+    <li><h4><a href="{% url 'home' %}">HOME</a></h4></li>
+    <li><h4><a href="{% url 'blog' %}">BLOG</a></h4></li>
+    <li><h4><a href="{% url 'resume' %}">R&#201;SUM&#201;</a></h4></li>
+    <li><h4><a href="{% url 'projects' %}">PROJECT INDEX</a></h4></li>
 {% for project in projects %}
-    <li><h4><a href="{% url 'project-detail' project.slug %}">
-            {{ project.name }}</a></h4></li>
+    <li><a href="./#{{ project.slug }}">{{ project.name }}</a></li>
 {% endfor %}
 </ul>
 
@@ -29,26 +32,26 @@ it, and my thought process while making it.</p>
 
 {% for project in projects %}
     <li>
-        <h2>{{ project.name }}</h2>
+        <a href="{% url 'project-detail' project.slug %}">
+            <h2 id="{{project.slug}}">{{ project.name }}</h2>
+        </a>
         <div class="row">
             <div class="col-md-4">
-                <a href="{% url 'project-detail' project.slug %}">
-                    {% if project.projectimage_set.count > 0 %}
-                    {% with image_url=project.projectimage_set.all.0.image %}
-                    {% thumbnail image_url "150x150" crop="center" as im %}
-                    <img src="{{ im.url }}"
-                         width="{{ im.width }}"
-                         height="{{ im.height }}" />
-                    {% empty %}
-                    <p>No preview</p>
-                    {% endthumbnail %}
-                    {% endwith %}
-                    {% endif %}
-                </a>
+                {% if project.projectimage_set.count > 0 %}
+                {% with image=project.projectimage_set.all.0.image %}
+                {% thumbnail image "150x150" crop="center" as im %}
+                <img class="img-thumbnail"
+                     src="{{ im.url }}"
+                     width="{{ im.width }}"
+                     height="{{ im.height }}" />
+                {% empty %}
+                <p>No preview</p>
+                {% endthumbnail %}
+                {% endwith %}
+                {% endif %}
             </div>
             <div class="col-md-8">
                 <p>short_descr: {{ project.short_descr }}</p>
-                <a href="{% url 'project-detail' project.slug %}">check it out</a>
             </div>
         </div>
     </li>

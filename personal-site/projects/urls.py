@@ -14,9 +14,7 @@ urlpatterns = patterns('',
         name='projects'),
 
     url(r'^(?P<slug>[\w-]+)/$',
-        DetailView.as_view(template_name='projects/detail.html',
-                           model=Project,
-                           context_object_name='project'),
+        views.ProjectDetailView.as_view(),
         name='project-detail'),
 )
 

@@ -9,6 +9,6 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProjectDetailView, self).get_context_data(**kwargs)
-        context['projects'] = Project.objects.all()
+        context['projects'] = Project.objects.order_by('priority')
         return context
 

@@ -4,13 +4,18 @@
 
 {% block menu %}
 
-<h1 class="text-right">&nbsp;</h1>
+<h1>&nbsp;</h1>
 
-<ul class="list-unstyled text-right">
+<ul class="list-unstyled">
     <li><h4><a href="{% url 'home' %}">HOME</a></h4></li>
-    <li><h4><a href="{% url 'projects' %}">PROJECT INDEX</a></h4></li>
+    <li><h4><a href="{% url 'blog' %}">BLOG</a></h4></li>
+    <li><h4><a href="{% url 'resume' %}">R&#201;SUM&#201;</a></h4></li>
+</ul>
+<hr />
+<ul class="list-unstyled">
+    <li><h4><a href="{% url 'projects' %}">PROJECTS</a></h4></li>
 {% for project in projects %}
-    <li><a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a></li>
+<li><a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a></li>
 {% endfor %}
 </ul>
 

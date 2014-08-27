@@ -1,0 +1,17 @@
+{% extends "blog/menu_base.html" %}
+
+{% block title %}{{ tag }} posts - Blog{% endblock %}
+
+{% block content %}
+
+<h2>Posts with tag {{ tag }}:</h2>
+<hr />
+<ul class="list-unstyled">
+{% for posttag in posttags %}
+    <a href="{% url 'blog-post' posttag.post.pub_date.year posttag.post.pub_date.month posttag.post.pub_date.day posttag.post.slug %}">
+        {{ posttag.post.name }} - {{ posttag.post.pub_date }}
+    </a>
+{% endfor %}
+</ul>
+
+{% endblock %}

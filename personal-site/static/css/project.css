@@ -37,3 +37,8 @@
 .vert-spacing {
   padding: 25px 0px;
 }
+
+/* line 39, ../sass/project.scss */
+.month-listing {
+  padding: 0px 0px 0px 15px;
+}

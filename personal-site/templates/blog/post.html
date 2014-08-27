@@ -1,44 +1,20 @@
-{% extends "base.html" %}
+{% extends "blog/menu_base.html" %}
 
-{% block title %}Blog {% endblock %}
-
-{% block menu %}
-
-<h1>&nbsp;</h1>
-
-<ul class="list-unstyled">
-    <li><h4><a href="{% url 'home' %}">HOME</a></h4></li>
-    <li><h4><a href="{% url 'projects' %}">PROJECTS</a></h4></li>
-    <li><h4><a href="{% url 'resume' %}">R&#201;SUM&#201;</a></h4></li>
-</ul>
-<hr />
-<ul class="list-unstyled">
-    <li><h4><a href="{% url 'blog' %}">BLOG</a></h4></li>
-{% for post in posts %}
-    <li><a href="./#{{ post.slug }}">{{ post.name }}</a></li>
-{% endfor %}
-</ul>
-
-{% endblock %}
+{% block title %}{{ post.name }} - Blog{% endblock %}
 
 {% block content %}
 
-<ul class="list-unstyled">
+<h1>{{ post.name }}</h1>
+<h4>posted {{ post.pub_date }} {{ post.pub_time }}</h4>
+<hr />
 
-{% for project in projects %}
-    <li>
-        <a href="{% url 'project-detail' project.slug %}">
-            <h2 id="{{project.slug}}">{{ project.name }}</h2>
-        </a>
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-8">
-                <p>short_descr: {{ project.short_descr }}</p>
-            </div>
-        </div>
-    </li>
+<p>{{ post.post_text.rendered|safe }}</p>
+
+<hr />
+<p>Tags:
+{% for tag in post.posttag_set.all %}
+    <a href="{% url 'blog-tag' tag.tag %}">{{ tag.tag }}</a>
 {% endfor %}
+</p>
 
-</ul>
 {% endblock %}

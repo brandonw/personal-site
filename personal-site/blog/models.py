@@ -7,7 +7,23 @@ def get_image_name(post_image, original_name):
     extension = splitext(original_name)
     return join(post_image.post.slug, post_image.name + extension[1])
 
+class PostGroup:
+    def __init__(self, year, month, posts):
+        self.year = year
+        self.month = month
+        self.posts = posts
+
+class PostManager(models.Manager):
+    def grouped_by_date(self):
+        dates = Post.objects.dates('pub_date', 'month', order='DESC')
+        groups = [PostGroup(date.year, date.strftime('%B'),
+            Post.objects.filter(pub_date__year=date.year)
+                        .filter(pub_date__month=date.month)) for date in dates]
+        return groups
+
 class Post(models.Model):
+
+    objects = PostManager()
 
     # post timestamp
     pub_date = models.DateField()
@@ -30,6 +46,7 @@ class PostTag(models.Model):
     post = models.ForeignKey(Post)
 
     # a tag the post is described by
+    # TODO: ensure tag is composed of [\w-]+
     tag = models.CharField(max_length=25)
 
 class PostImage(models.Model):

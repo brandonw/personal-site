@@ -26,7 +26,6 @@
 
 <h1 class="text-center heading">{{ project.name }}</h1>
 
-{% if project.projectimage_set.count > 0 %}
 <ul class="list-unstyled">
     {% for projectimage in project.projectimage_set.all %}
     {% thumbnail projectimage.image "150x150" crop="center" as im %}
@@ -41,7 +40,6 @@
     {% endthumbnail %}
     {% endfor %}
 </ul>
-{% endif %}
 
 <p>{{ project.full_descr.rendered|safe }}</p>
 

@@ -33,6 +33,6 @@ class BlogTagView(TemplateView):
         tagslug =  kwargs['slug']
         tag = Tag.objects.get(slug=tagslug)
         context['tag'] = tag.name
-        context['taggedposts'] = Post.objects.filter(tags__name__in=[tag.name]).distinct()
+        context['taggedposts'] = Post.objects.filter(tags__name__exact=tag.name).distinct()
         context['posts'] = Post.objects.grouped_by_date()
         return context

@@ -52,6 +52,8 @@ class Common(Configuration):
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
         'sorl.thumbnail', # generating thumbnails of project images
+        'taggit', # tag support for arbitrary models
+        'taggit_templatetags', # template tags for taggit
     )
 
     # Apps specific for this project go here.
@@ -276,6 +278,16 @@ class Common(Configuration):
 
     ########## Your common stuff: Below this line define 3rd party libary settings
 
+    ########## SOUTH MIGRATION MODULES
+    SOUTH_MIGRATION_MODULES = {
+        'taggit': 'taggit.south_migrations',
+    }
+    ########## END SOUTH MIGRATION MODULES
+
+    ########## DJANGO-TAGGIT-TEMPLATETAGS
+    TAGGIT_TAGCLOUD_MIN=5.0
+    TAGGIT_TAGCLOUD_MAX=3.0
+    ########## END DJANGO-TAGGIT-TEMPLATETAGS
 
 class Local(Common):
 

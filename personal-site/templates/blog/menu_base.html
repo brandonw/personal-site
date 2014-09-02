@@ -2,6 +2,8 @@
 
 {% block menu %}
 
+{% load taggit_extras %}
+
 <h1>&nbsp;</h1>
 
 <ul class="list-unstyled">
@@ -12,6 +14,16 @@
 <hr />
 <ul class="list-unstyled">
     <li><h4><a href="{% url 'blog' %}">BLOG</a></h4></li>
+
+{% get_tagcloud as tags for 'blog.Post' %}
+<p>
+{% for tag in tags %}
+{% with size=tag.weight|floatformat:0 %}
+<span class="h{{ size }}"><a href="{% url 'blog-tag' tag.slug %}">{{ tag.name }}</a></span>
+{% endwith %}
+{% endfor %}
+</p>
+
 {% for day in posts %}
     <li><h4>{{day.month}} {{ day.year }}</h4>
     <ul class="list-unstyled month-listing">

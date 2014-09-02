@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from blog.models import Post, PostTag
+
+from taggit.models import Tag
+
+from blog.models import Post
 
 class BlogHomeView(TemplateView):
     template_name = 'blog/post.html'
@@ -27,7 +30,9 @@ class BlogTagView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogTagView, self).get_context_data(**kwargs)
-        context['tag'] =  kwargs['tag']
-        context['posttags'] = PostTag.objects.filter(tag__iexact=context['tag'])
+        tagslug =  kwargs['slug']
+        tag = Tag.objects.get(slug=tagslug)
+        context['tag'] = tag.name
+        context['taggedposts'] = Post.objects.filter(tags__name__in=[tag.name]).distinct()
         context['posts'] = Post.objects.grouped_by_date()
         return context

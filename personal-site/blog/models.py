@@ -1,7 +1,9 @@
 from django.db import models
 from os.path import splitext, join
+
 from autoslug import AutoSlugField
 from markupfield.fields import MarkupField
+from taggit.managers import TaggableManager
 
 def get_image_name(post_image, original_name):
     extension = splitext(original_name)
@@ -41,13 +43,7 @@ class Post(models.Model):
     # text of the post, rendered to template as markdown
     post_text = MarkupField(markup_type='markdown')
 
-class PostTag(models.Model):
-
-    post = models.ForeignKey(Post)
-
-    # a tag the post is described by
-    # TODO: ensure tag is composed of [\w-]+
-    tag = models.CharField(max_length=25)
+    tags = TaggableManager()
 
 class PostImage(models.Model):
 

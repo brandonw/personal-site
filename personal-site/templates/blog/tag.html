@@ -7,10 +7,10 @@
 <h2>Posts with tag {{ tag }}:</h2>
 <hr />
 <ul class="list-unstyled">
-{% for posttag in posttags %}
-    <a href="{% url 'blog-post' posttag.post.pub_date.year posttag.post.pub_date.month posttag.post.pub_date.day posttag.post.slug %}">
-        {{ posttag.post.name }} - {{ posttag.post.pub_date }}
-    </a>
+{% for post in taggedposts %}
+    <h3><a href="{% url 'blog-post' post.pub_date.year post.pub_date.month post.pub_date.day post.slug %}">
+        {{ post.name }}
+    </a> <small>{{ post.pub_date }}</small></h3>
 {% endfor %}
 </ul>
 

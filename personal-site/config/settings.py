@@ -130,8 +130,7 @@ class Common(Configuration):
     ########## CACHING
     CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        'LOCATION': '127.0.0.1:11211',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
         }
     }
     ########## END CACHING
@@ -377,5 +376,14 @@ class Production(Common):
         )),
     )
     ########## END TEMPLATE CONFIGURATION
+
+    ########## CACHING
+    CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+        }
+    }
+    ########## END CACHING
 
     ########## Your production stuff: Below this line define 3rd party libary settings

@@ -20,7 +20,8 @@ class PostManager(models.Manager):
         dates = Post.objects.dates('pub_date', 'month', order='DESC')
         groups = [PostGroup(date.year, date.strftime('%B'),
             Post.objects.filter(pub_date__year=date.year)
-                        .filter(pub_date__month=date.month)) for date in dates]
+                        .filter(pub_date__month=date.month)
+                        .order_by('-pub_date')) for date in dates]
         return groups
 
 class Post(models.Model):

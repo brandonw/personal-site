@@ -37,7 +37,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-6 col-md-offset-3 col-sm-12">
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
@@ -47,7 +47,7 @@
                     {% block content %}
                     {% endblock content %}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 visible-lg-block visible-md-block">
                     {% block menu %}
                     {% endblock menu %}
                 </div>

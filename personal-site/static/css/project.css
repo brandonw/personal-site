@@ -42,3 +42,8 @@
 .month-listing {
   padding: 0px 0px 0px 15px;
 }
+
+/* line 43, ../sass/project.scss */
+p.sm-tag-cloud {
+  max-width: 300px;
+}

@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<div>
 <h1>{{ post.name }}</h1>
 <h4>posted {{ post.pub_date }} {{ post.pub_time }}</h4>
 <hr />
@@ -20,5 +21,25 @@
 {% endif %}
 {% endfor %}
 </p>
+</div>
+
+<div class="visible-xs-block visible-sm-block">
+    <hr />
+    <h3>Archive:</h3>
+    <ul class="list-unstyled">
+    {% for day in posts %}
+        <li><h4>{{day.month}} {{ day.year }}</h4>
+        <ul class="list-unstyled month-listing">
+        {% for post in day.posts %}
+            <li>
+                <a href="{% url 'blog-post' post.pub_date.year post.pub_date.month post.pub_date.day post.slug %}">
+                {{ post.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}

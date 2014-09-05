@@ -16,7 +16,7 @@ class PostGroup:
         self.posts = posts
 
 class PostManager(models.Manager):
-    def grouped_by_date(self):
+    def group_by_date(self):
         dates = Post.objects.dates('pub_date', 'month', order='DESC')
         groups = [PostGroup(date.year, date.strftime('%B'),
             Post.objects.filter(pub_date__year=date.year)
@@ -39,7 +39,7 @@ class Post(models.Model):
     name = models.CharField(max_length=100)
 
     # slug for post, unique per day
-    slug = AutoSlugField(populate_from='name', unique_with='pub_date')
+    slug = AutoSlugField(populate_from='name')
 
     # text of the post, rendered to template as markdown
     post_text = MarkupField(markup_type='markdown')

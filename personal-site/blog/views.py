@@ -12,7 +12,7 @@ class BlogHomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(BlogHomeView, self).get_context_data(**kwargs)
         context['post'] = Post.objects.order_by('-pub_date', '-pub_time').first()
-        context['posts'] = Post.objects.grouped_by_date()
+        context['posts'] = Post.objects.group_by_date()
         return context
 
 class BlogPostView(DetailView):
@@ -22,7 +22,7 @@ class BlogPostView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogPostView, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.grouped_by_date()
+        context['posts'] = Post.objects.group_by_date()
         return context
 
 class BlogTagView(TemplateView):
@@ -34,5 +34,5 @@ class BlogTagView(TemplateView):
         tag = Tag.objects.get(slug=tagslug)
         context['tag'] = tag.name
         context['taggedposts'] = Post.objects.filter(tags__name__exact=tag.name).distinct()
-        context['posts'] = Post.objects.grouped_by_date()
+        context['posts'] = Post.objects.group_by_date()
         return context

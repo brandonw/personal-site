@@ -6,21 +6,22 @@
 
 <ul class="list-unstyled">
     <li><h4><a href="{% url 'home' %}">HOME</a></h4></li>
+    <li><h4><a href="{% url 'blog' %}">BLOG</a></h4></li>
     <li><h4><a href="{% url 'projects' %}">PROJECTS</a></h4></li>
     <li><h4><a href="{% url 'resume' %}">R&#201;SUM&#201;</a></h4></li>
 </ul>
 <hr />
 <ul class="list-unstyled">
-    <li><h4><a href="{% url 'blog' %}">BLOG</a></h4></li>
-
-{% get_tagcloud as tags for 'blog.Post' %}
-<p>
-{% for tag in tags %}
-{% with size=tag.weight|floatformat:0 %}
-<span class="h{{ size }}"><a href="{% url 'blog-tag' tag.slug %}">{{ tag.name }}</a></span>
-{% endwith %}
-{% endfor %}
-</p>
+    <li>
+        {% get_tagcloud as tags for 'blog.Post' %}
+        <p>
+        {% for tag in tags %}
+        {% with size=tag.weight|floatformat:0 %}
+        <span class="h{{ size }}"><a href="{% url 'blog-tag' tag.slug %}">{{ tag.name }}</a></span>
+        {% endwith %}
+        {% endfor %}
+        </p>
+    </li>
 
 {% for day in posts %}
     <li><h4>{{day.month}} {{ day.year }}</h4>

@@ -2,9 +2,15 @@
 
 {% block title %}{{ project.name }}{% endblock %}
 
-{% block menu %}
+{% block header %}
 
-<h1>&nbsp;</h1>
+<div class="page-header">
+    <h1 class="text-center heading">{{ project.name }}</h1>
+</div>
+
+{% endblock header %}
+
+{% block menu %}
 
 <ul class="list-unstyled">
     <li><h4><a href="{% url 'home' %}">HOME</a></h4></li>
@@ -23,8 +29,6 @@
 
 {% block content %}
 {% load thumbnail %}
-
-<h1 class="text-center heading">{{ project.name }}</h1>
 
 <ul class="list-unstyled">
     {% for projectimage in project.projectimage_set.all %}

@@ -2,10 +2,16 @@
 
 {% block title %}{{ tag }} posts - Blog{% endblock %}
 
+{% block header %}
+
+<div class="page-header">
+    <h1>Posts with tag <span class="label label-default">{{ tag }}</span></h1>
+</div>
+
+{% endblock header %}
+
 {% block content %}
 
-<h2>Posts with tag {{ tag }}:</h2>
-<hr />
 <ul class="list-unstyled">
 {% for post in taggedposts %}
     <h3><a href="{% url 'blog-post' post.pub_date.year post.pub_date.month post.pub_date.day post.slug %}">

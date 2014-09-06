@@ -26,23 +26,21 @@ posted {{ post.pub_date }} {{ post.pub_time }}
 {% endfor %}
 </p>
 
-<div class="visible-xs-block visible-sm-block">
-    <hr />
-    <h3>Archive:</h3>
-    <ul class="list-unstyled">
-    {% for day in posts %}
-        <li><h4>{{day.month}} {{ day.year }}</h4>
-        <ul class="list-unstyled month-listing">
-        {% for post in day.posts %}
-            <li>
-                <a href="{% url 'blog-post' post.pub_date.year post.pub_date.month post.pub_date.day post.slug %}">
-                {{ post.name }}</a>
-            </li>
-        {% endfor %}
-        </ul>
-        </li>
-    {% endfor %}
-    </ul>
-</div>
+<ul class="pager">
+    {% if prev %}
+    <li class="previous">
+        <a href="{% url 'blog-post' prev.pub_date.year prev.pub_date.month prev.pub_date.day prev.slug %}">
+            &larr; Previous<br />{{ prev.name }}
+        </a>
+    </li>
+    {% endif %}
+    {% if next %}
+    <li class="next">
+        <a href="{% url 'blog-post' next.pub_date.year next.pub_date.month next.pub_date.day next.slug %}">
+            Next &rarr;<br />{{ next.name }}
+        </a>
+    </li>
+    {% endif %}
+</ul>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
+from django.http import Http404
 
 from taggit.models import Tag
 
@@ -11,12 +12,20 @@ class BlogHomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogHomeView, self).get_context_data(**kwargs)
-        post_qty = Post.objects.count()
+
+        objects = Post.objects
+        if not self.request.user.is_superuser:
+            objects = objects.filter(is_published__exact=True)
+
+        post_qty = objects.count()
         if post_qty > 0:
-            context['post'] = Post.objects.order_by('-pub_date', '-pub_time')[0]
+            context['post'] = objects.order_by('-pub_date', '-pub_time')[0]
         if post_qty > 1:
-            context['prev'] = Post.objects.order_by('-pub_date', '-pub_time')[1]
-        context['posts'] = Post.objects.group_by_date()
+            context['prev'] = objects.order_by('-pub_date', '-pub_time')[1]
+        context['posts'] = Post.objects.group_by_date(
+            self.request.user.is_superuser)
+        if 'post' not in context:
+            raise Http404
         return context
 
 def get_wrapped_posts(groups, slug):
@@ -35,13 +44,17 @@ def get_wrapped_posts(groups, slug):
     return (prev, next)
 
 class BlogPostView(DetailView):
-    model = Post
     context_object_name = 'post'
     template_name = 'blog/post.html'
 
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Post.objects.all()
+        return Post.objects.filter(is_published__exact=True)
+
     def get_context_data(self, **kwargs):
         context = super(BlogPostView, self).get_context_data(**kwargs)
-        groups = Post.objects.group_by_date()
+        groups = Post.objects.group_by_date(self.request.user.is_superuser)
         context['posts'] = groups
 
         (prev, next) = get_wrapped_posts(groups, self.kwargs['slug'])
@@ -57,6 +70,9 @@ class BlogTagView(TemplateView):
         tagslug =  self.kwargs['slug']
         tag = Tag.objects.get(slug=tagslug)
         context['tag'] = tag.name
-        context['taggedposts'] = Post.objects.filter(tags__name__exact=tag.name).distinct()
+        context['taggedposts'] = (Post.objects
+            .filter(is_published__exact=True)
+            .filter(tags__name__exact=tag.name)
+            .distinct())
         context['posts'] = Post.objects.group_by_date()
         return context

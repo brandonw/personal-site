@@ -16,12 +16,16 @@ class PostGroup:
         self.posts = posts
 
 class PostManager(models.Manager):
-    def group_by_date(self):
-        dates = Post.objects.dates('pub_date', 'month', order='DESC')
+    def group_by_date(self, show_unpublished=False):
+        objects = Post.objects
+        if not show_unpublished:
+            objects = objects.filter(is_published__exact=True)
+
+        dates = objects.dates('pub_date', 'month', order='DESC')
         groups = [PostGroup(date.year, date.strftime('%B'),
-            Post.objects.filter(pub_date__year=date.year)
-                        .filter(pub_date__month=date.month)
-                        .order_by('-pub_date')) for date in dates]
+            objects.filter(pub_date__year=date.year)
+                   .filter(pub_date__month=date.month)
+                   .order_by('-pub_date')) for date in dates]
         return groups
 
 class Post(models.Model):
@@ -44,6 +48,12 @@ class Post(models.Model):
     # text of the post, rendered to template as markdown
     post_text = MarkupField(markup_type='markdown')
 
+    # tags attached to this post
+    # note that currently, tags are displayed regardless of whether or not
+    # the post is published. to prevent tags from being displayed, do not
+    # assign a post any tags until it is published.
+    # alternatively, create a new template tag that filters the posts
+    # before returning the tags
     tags = TaggableManager()
 
 class PostImage(models.Model):

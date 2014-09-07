@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "projects/menu_base.html" %}
 
 {% block title %}Projects{% endblock %}
 
@@ -9,23 +9,6 @@
 </div>
 
 {% endblock header %}
-
-{% block menu %}
-
-<ul class="list-unstyled">
-    <li><h4><a href="{% url 'home' %}">HOME</a></h4></li>
-    <li><h4><a href="{% url 'blog' %}">BLOG</a></h4></li>
-    <li><h4><a href="{% url 'projects' %}">PROJECTS</a></h4></li>
-    <li><h4><a href="{% url 'resume' %}">R&#201;SUM&#201;</a></h4></li>
-</ul>
-<hr />
-<ul class="list-unstyled">
-{% for project in projects %}
-    <li><a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a></li>
-{% endfor %}
-</ul>
-
-{% endblock %}
 
 {% block content %}
 {% load thumbnail %}

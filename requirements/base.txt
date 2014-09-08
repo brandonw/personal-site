@@ -33,10 +33,12 @@ django-avatar==2.0
 # uwsgi
 uwsgi==2.0.6
 
+# cache via memcached
+pylibmc==1.3.0
+
 # Your custom requirements go here
 django-markupfield==1.2.1
 Markdown==2.4.1
 sorl-thumbnail==11.12
-pylibmc==1.3.0
 django-taggit==0.12.1
 django-taggit-templatetags==0.2.5

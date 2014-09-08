@@ -19,9 +19,9 @@ class BlogHomeView(TemplateView):
 
         post_qty = objects.count()
         if post_qty > 0:
-            context['post'] = objects.order_by('-pub_date', '-pub_time')[0]
+            context['post'] = objects.order_by('-pub_date')[0]
         if post_qty > 1:
-            context['prev'] = objects.order_by('-pub_date', '-pub_time')[1]
+            context['prev'] = objects.order_by('-pub_date')[1]
         context['posts'] = Post.objects.group_by_date(
             self.request.user.is_superuser)
         if 'post' not in context:

@@ -3,8 +3,7 @@ from blog.models import Post, PostImage
 
 class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'pub_date'
-    fields = ('name',
-            ('pub_date', 'pub_time'),
+    fields = ('name', 'pub_date',
             ('is_published', 'tags'),
             'post_text')
 

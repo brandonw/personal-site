@@ -21,7 +21,7 @@ class PostManager(models.Manager):
         if not show_unpublished:
             objects = objects.filter(is_published__exact=True)
 
-        dates = objects.dates('pub_date', 'month', order='DESC')
+        dates = objects.datetimes('pub_date', 'month', order='DESC')
         groups = [PostGroup(date.year, date.strftime('%B'),
             objects.filter(pub_date__year=date.year)
                    .filter(pub_date__month=date.month)
@@ -33,10 +33,8 @@ class Post(models.Model):
     objects = PostManager()
 
     # post timestamp
-    pub_date = models.DateField(verbose_name='Publish Date',
-        help_text='The date the post was published.')
-    pub_time = models.TimeField(verbose_name='Publish Time',
-        help_text='The time the post was published.')
+    pub_date = models.DateTimeField(verbose_name='Publish Date',
+        help_text='The date and time the post was published.')
 
     # display post to the public
     is_published = models.BooleanField(

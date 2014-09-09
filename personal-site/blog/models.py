@@ -20,7 +20,7 @@ class PostManager(models.Manager):
     def group_by_date(self, show_unpublished=False):
         objects = Post.objects
         if not show_unpublished:
-            objects = objects.filter(is_published__exact=True)
+            objects = objects.filter(is_published=True)
 
         dates = objects.datetimes('pub_date', 'month', order='DESC')
         groups = [PostGroup(date.year, date.strftime('%B'),

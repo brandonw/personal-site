@@ -15,7 +15,7 @@ class BlogHomeView(TemplateView):
 
         objects = Post.objects
         if not self.request.user.is_superuser:
-            objects = objects.filter(is_published__exact=True)
+            objects = objects.filter(is_published=True)
 
         post_qty = objects.count()
         if post_qty > 0:
@@ -75,8 +75,8 @@ class BlogTagView(TemplateView):
         tag = Tag.objects.get(slug=tagslug)
         context['tag'] = tag.name
         context['taggedposts'] = (Post.objects
-            .filter(is_published__exact=True)
-            .filter(tags__name__exact=tag.name)
+            .filter(is_published=True)
+            .filter(tags__name=tag.name)
             .distinct())
         context['posts'] = Post.objects.group_by_date()
 

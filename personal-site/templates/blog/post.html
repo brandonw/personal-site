@@ -12,7 +12,7 @@
 
 {% block content %}
 
-<p>{{ post.post_text.rendered|safe }}</p>
+<p>{{ html|safe }}</p>
 
 <hr />
 posted {{ post.pub_date }}

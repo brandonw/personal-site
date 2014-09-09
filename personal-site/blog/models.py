@@ -2,7 +2,6 @@ from django.db import models
 from os.path import splitext, join
 
 from autoslug import AutoSlugField
-from markupfield.fields import MarkupField
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItem, Tag
 
@@ -49,7 +48,7 @@ class Post(models.Model):
     slug = AutoSlugField(populate_from='name')
 
     # text of the post, rendered to template as markdown
-    post_text = MarkupField(markup_type='markdown',
+    post_text = models.TextField(
         help_text='The content of the post, in Markdown format. The value ' +
         'of this field will not be html escaped.')
 

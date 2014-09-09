@@ -1,7 +1,6 @@
 from django.db import models
 from os.path import splitext
 from autoslug import AutoSlugField
-from markupfield.fields import MarkupField
 from sorl.thumbnail import ImageField
 
 def get_slug(project_image, original_name):
@@ -31,7 +30,7 @@ class Project(models.Model):
         'This will be html escaped, so ensure it is plain text.')
 
     # an in-depth description of what the project is, in Markdown format
-    full_descr = MarkupField(markup_type='markdown',
+    full_descr = models.TextField(
         help_text='The full description of the project, in Markdown format. ' +
         'The value of this field  will not be html escaped.')
 

@@ -8,6 +8,7 @@
     - python-dev
     - python-psycopg2
     - libjpeg-dev
+    - git
 
 - name: Install necessary python packages
   sudo: yes

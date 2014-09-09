@@ -41,4 +41,4 @@ django-markupfield==1.2.1
 Markdown==2.4.1
 sorl-thumbnail==11.12
 django-taggit==0.12.1
-django-taggit-templatetags==0.2.5
+git+https://github.com/armisael/django-taggit-templatetags.git@dd7a20af0f2f23f4efaa30b43119a7604502551c

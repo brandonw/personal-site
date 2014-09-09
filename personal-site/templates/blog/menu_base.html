@@ -13,7 +13,7 @@
 <hr />
 <ul class="list-unstyled">
     <li>
-        {% get_tagcloud as tags for 'blog.Post' %}
+        {% get_tagcloud as tags for published_tags %}
         <p>
         {% for tag in tags %}
         {% with size=tag.weight|floatformat:0 %}

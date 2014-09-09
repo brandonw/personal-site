@@ -4,6 +4,7 @@ from os.path import splitext, join
 from autoslug import AutoSlugField
 from markupfield.fields import MarkupField
 from taggit.managers import TaggableManager
+from taggit.models import TaggedItem, Tag
 
 def get_image_name(post_image, original_name):
     extension = splitext(original_name)

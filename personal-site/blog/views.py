@@ -26,6 +26,8 @@ class BlogHomeView(TemplateView):
             self.request.user.is_superuser)
         if 'post' not in context:
             raise Http404
+
+        context['published_tags'] = Post.objects.filter(is_published=True)
         return context
 
 def get_wrapped_posts(groups, slug):
@@ -50,7 +52,7 @@ class BlogPostView(DetailView):
     def get_queryset(self):
         if self.request.user.is_superuser:
             return Post.objects.all()
-        return Post.objects.filter(is_published__exact=True)
+        return Post.objects.filter(is_published=True)
 
     def get_context_data(self, **kwargs):
         context = super(BlogPostView, self).get_context_data(**kwargs)
@@ -60,6 +62,8 @@ class BlogPostView(DetailView):
         (prev, next) = get_wrapped_posts(groups, self.kwargs['slug'])
         context['prev'] = prev
         context['next'] = next
+
+        context['published_tags'] = Post.objects.filter(is_published=True)
         return context
 
 class BlogTagView(TemplateView):
@@ -75,4 +79,6 @@ class BlogTagView(TemplateView):
             .filter(tags__name__exact=tag.name)
             .distinct())
         context['posts'] = Post.objects.group_by_date()
+
+        context['published_tags'] = Post.objects.filter(is_published=True)
         return context

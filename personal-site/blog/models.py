@@ -62,7 +62,10 @@ class Post(models.Model):
     tags = TaggableManager(help_text='The tags to categorize this post by.')
 
     def __unicode__(self):
-        return self.name
+        if self.is_published:
+            return self.name
+        else:
+            return self.name + '- not published'
 
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse

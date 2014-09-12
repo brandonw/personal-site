@@ -22,8 +22,8 @@
         <!-- Your stuff: Third-party css libraries go here -->
 
         <!-- This file store project specific CSS -->
-        <link href="{% static 'css/project.css' %}" rel="stylesheet">
         <link href="{% static 'css/pygments.css' %}" rel="stylesheet">
+        <link href="{% static 'css/project.css' %}" rel="stylesheet">
         {% endblock %}
 
         {% block angular %}
@@ -34,37 +34,66 @@
 
     <body>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-offset-3 col-md-6">
-                    {% block header %}
-                    {% endblock header %}
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-8">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="{% url 'home' %}">BRANDON WASKIEWICZ</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                {% block menu-blog %}
+                                <li><a href="{% url 'blog' %}">BLOG</a></li>
+                                {% endblock %}
+                                {% block menu-projects %}
+                                <li><a href="{% url 'projects' %}">PROJECTS</a></li>
+                                {% endblock %}
+                                {% block menu-resume %}
+                                <li><a href="{% url 'resume' %}">R&#201;SUM&#201;</a></li>
+                                {% endblock %}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </nav>
+
+        <div id="content" class="container">
             <div class="row">
-                <div class="col-md-offset-3 col-md-6">
+                {% block content-layout %}
+                <div class="col-md-offset-1 col-md-8">
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
                         {% endfor %}
                     {% endif %}
 
+                    <div id="header">
+                        {% block header %}
+                        {% endblock header %}
+                    </div>
                     {% block content %}
                     {% endblock content %}
                 </div>
-                <div class="col-md-3 visible-md-block visible-lg-block">
-                    {% block menu %}
-
-                    <ul class="list-unstyled">
-                        <li><h4><a href="{% url 'home' %}">HOME</a></h4></li>
-                        <li><h4><a href="{% url 'blog' %}">BLOG</a></h4></li>
-                        <li><h4><a href="{% url 'projects' %}">PROJECTS</a></h4></li>
-                        <li><h4><a href="{% url 'resume' %}">R&#201;SUM&#201;</a></h4></li>
-                    </ul>
-
-                    {% endblock menu %}
+                <div id="side-menu" class="col-md-2">
+                    <h1 class="hidden-sm hidden-xs">&nbsp;</h1>
+                    {% block sidemenu %}
+                    {% endblock sidemenu %}
                 </div>
+                {% endblock %}
             </div>
+            <hr id="footer" />
+            {% block footer %}
+            <p class="text-center">Content Copyright &copy; {% now "Y" %} Brandon Waskiewicz
+            {% endblock %}
         </div>
 
         {% block modal %}{% endblock modal %}

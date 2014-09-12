@@ -1,12 +1,10 @@
-{% extends "blog/menu_base.html" %}
+{% extends "blog/base.html" %}
 
 {% block title %}{{ post.name }} - Blog{% endblock %}
 
 {% block header %}
 
-<div class="page-header">
-    <h1>{{ post.name }}</h1>
-</div>
+<h1>{{ post.name }}</h1>
 
 {% endblock header %}
 
@@ -14,9 +12,8 @@
 
 <p>{{ html|safe }}</p>
 
-<hr />
 posted {{ post.pub_date }}
-<p>Tags:
+<p class="tags">Tags:
 {% for tag in post.tags.all %}
 {% if forloop.last %}
     <a href="{% url 'blog-tag' tag.slug %}">{{ tag.name }}</a>
@@ -26,21 +23,22 @@ posted {{ post.pub_date }}
 {% endfor %}
 </p>
 
-<ul class="pager">
+<div id="blog-pager" class="clearfix">
     {% if prev %}
-    <li class="previous">
+    <div class="pull-left">
         <a href="{% url 'blog-post' prev.pub_date.year prev.pub_date.month prev.pub_date.day prev.slug %}">
-            &larr; Previous<br />{{ prev.name }}
+            <h4>&larr; {{ prev.name }}</h4>
         </a>
-    </li>
+    </div>
     {% endif %}
+
     {% if next %}
-    <li class="next">
+    <div class="pull-right">
         <a href="{% url 'blog-post' next.pub_date.year next.pub_date.month next.pub_date.day next.slug %}">
-            Next &rarr;<br />{{ next.name }}
+            <h4>{{ next.name }} &rarr;</h4>
         </a>
-    </li>
+    </div>
     {% endif %}
-</ul>
+</div>
 
 {% endblock %}

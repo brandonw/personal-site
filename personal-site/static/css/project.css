@@ -1,44 +1,211 @@
-/* line 5, ../sass/project.scss */
+/* line 10, ../sass/project.scss */
 .alert-debug {
   color: black;
   background-color: white;
   border-color: #d6e9c6;
 }
 
-/* line 11, ../sass/project.scss */
+/* line 16, ../sass/project.scss */
 .alert-info {
   color: #3a87ad;
   background-color: #d9edf7;
   border-color: #bce8f1;
 }
 
-/* line 17, ../sass/project.scss */
+/* line 22, ../sass/project.scss */
 .alert-success {
   color: #468847;
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
 
-/* line 23, ../sass/project.scss */
+/* line 28, ../sass/project.scss */
 .alert-warning {
   color: black;
   background-color: orange;
   border-color: #d6e9c6;
 }
 
-/* line 29, ../sass/project.scss */
+/* line 34, ../sass/project.scss */
 .alert-error {
   color: #b94a48;
   background-color: #f2dede;
   border-color: #eed3d7;
 }
 
-/* line 35, ../sass/project.scss */
-.month-listing {
-  padding: 0px 0px 0px 15px;
+/* line 41, ../sass/project.scss */
+.navbar-inverse {
+  background-color: #344040;
+  background-image: inherit;
+  background-repeat: inherit;
+  box-shadow: inherit;
 }
 
-/* line 39, ../sass/project.scss */
-p.sm-tag-cloud {
-  max-width: 300px;
+/* line 50, ../sass/project.scss */
+.navbar-inverse .navbar-header button,
+.navbar-inverse .navbar-header button:hover,
+.navbar-inverse .navbar-header button:focus {
+  background-color: #f0e1bb;
+}
+
+/* line 54, ../sass/project.scss */
+.navbar-inverse .navbar-header button span.icon-bar {
+  background-color: #344040;
+}
+
+/* line 59, ../sass/project.scss */
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-header > a {
+  color: #f0e1bb;
+}
+
+@media (min-width: 768px) {
+  /* line 67, ../sass/project.scss */
+  .navbar-inverse .navbar-nav > .active > a:hover,
+  .navbar-inverse .navbar-nav > .active > a:focus,
+  .navbar-inverse .navbar-nav > li > a:hover,
+  .navbar-inverse .navbar-nav > li > a:focus {
+    background-color: #344040;
+  }
+
+  /* line 72, ../sass/project.scss */
+  .navbar-inverse .navbar-nav > .active > a,
+  .navbar-inverse .navbar-header > .active > a {
+    color: #f0e1bb;
+    background-color: #344040;
+    padding-top: 12px;
+    border-top: 3px;
+    border-left: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: #f0e1bb;
+    background-image: inherit;
+    background-repeat: inherit;
+    box-shadow: inherit;
+  }
+
+  /* line 88, ../sass/project.scss */
+  .navbar-inverse .navbar-nav > li > a:hover,
+  .navbar-inverse .navbar-nav > li > a:focus {
+    padding-top: 12px;
+    border-top: 3px;
+    border-left: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: #db4641;
+  }
+}
+@media (max-width: 767px) {
+  /* line 101, ../sass/project.scss */
+  .navbar-inverse .navbar-nav > li > a:hover,
+  .navbar-inverse .navbar-nav > li > a:focus {
+    color: #344040;
+    background-color: #f0e1bb;
+  }
+}
+/* line 109, ../sass/project.scss */
+#side-menu ul.nav-stacked > li > a:hover,
+#side-menu ul.nav-stacked > li > a:focus {
+  padding-left: 13px;
+  border-left: 2px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-radius: 0px;
+  border-style: solid;
+  border-color: #db4641;
+  background-color: #f0e1bb;
+}
+
+/* line 122, ../sass/project.scss */
+div#header {
+  padding-top: 15px;
+}
+
+/* line 127, ../sass/project.scss */
+body {
+  padding-top: 50px;
+  background-color: #beac91;
+  color: #344040;
+}
+
+/* line 133, ../sass/project.scss */
+hr {
+  border-color: #344040;
+}
+
+/* line 137, ../sass/project.scss */
+#content a {
+  color: #344040;
+  text-decoration: underline;
+}
+
+/* line 142, ../sass/project.scss */
+#content a:hover, a:focus {
+  color: #db4641;
+  text-decoration: underline;
+}
+
+/* line 148, ../sass/project.scss */
+div#content {
+  background-color: #f0e1bb;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* line 155, ../sass/project.scss */
+hr#footer {
+  margin-bottom: 5px;
+}
+
+/* line 160, ../sass/project.scss */
+.color {
+  color: #db4641;
+}
+
+/* line 164, ../sass/project.scss */
+ul.nav-stacked > li > a {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #344040;
+}
+
+/* line 170, ../sass/project.scss */
+#blog-pager {
+  padding-top: 25px;
+}
+
+/* line 174, ../sass/project.scss */
+#blog-pager a {
+  padding: 15px;
+  display: block;
+  text-decoration: underline;
+}
+
+/* line 181, ../sass/project.scss */
+ul#tagged-posts a,
+ul#project-list > li > a {
+  color: #344040;
+  text-decoration: underline;
+}
+
+/* line 189, ../sass/project.scss */
+ul#tagged-posts a:hover,
+ul#tagged-posts a:focus,
+ul#project-list > li > a:hover,
+ul#project-list > li > a:focus {
+  color: #db4641;
+}
+
+/* line 193, ../sass/project.scss */
+ul#image-list > li > a > img {
+  background-color: #beac91;
+}
+
+/* line 198, ../sass/project.scss */
+ul#image-list > li > a > img:hover,
+ul#image-list > li > a > img:focus {
+  background-color: #db4641;
 }

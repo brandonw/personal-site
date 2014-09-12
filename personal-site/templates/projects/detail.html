@@ -1,32 +1,33 @@
-{% extends "projects/menu_base.html" %}
+{% extends "projects/base.html" %}
 
 {% block title %}{{ project.name }}{% endblock %}
 
 {% block header %}
 
-<div class="page-header">
-    <h1 class="text-center heading">{{ project.name }}</h1>
-</div>
+<h1 class="text-center heading">{{ project.name }}</h1>
 
 {% endblock header %}
 
 {% block content %}
 {% load thumbnail %}
 
-<ul class="list-unstyled">
+<ul id="image-list" class="list-inline">
     {% for projectimage in project.projectimage_set.all %}
     {% thumbnail projectimage.image "150x150" crop="center" as im %}
+    <li>
     <a href="{{ projectimage.image.url }}">
         <img class="img-thumbnail"
              src="{{ im.url }}"
              width="{{ im.width }}"
              height="{{ im.height }}" />
     </a>
-    {% empty %}
-    <p>No preview</p>
+    </li>
     {% endthumbnail %}
     {% endfor %}
 </ul>
+{% if project.projectimage_set.count > 0 %}
+<hr />
+{% endif %}
 
 <p>{{ html|safe }}</p>
 

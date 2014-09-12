@@ -1,22 +1,20 @@
-{% extends "blog/menu_base.html" %}
+{% extends "blog/base.html" %}
 
 {% block title %}{{ tag }} posts - Blog{% endblock %}
 
 {% block header %}
 
-<div class="page-header">
-    <h1>Posts with tag <span class="label label-default">{{ tag }}</span></h1>
-</div>
+<h1>Posts tagged <span class="color">{{ tag }}</span></h1>
 
 {% endblock header %}
 
 {% block content %}
 
-<ul class="list-unstyled">
+<ul id="tagged-posts" class="list-unstyled">
 {% for post in taggedposts %}
-    <h3><a href="{% url 'blog-post' post.pub_date.year post.pub_date.month post.pub_date.day post.slug %}">
-        {{ post.name }}
-    </a> <small>{{ post.pub_date }}</small></h3>
+    <h3>
+        <a href="{% url 'blog-post' post.pub_date.year post.pub_date.month post.pub_date.day post.slug %}">{{ post.name }}</a>
+        <small>{{ post.pub_date }}</small></h3>
 {% endfor %}
 </ul>
 

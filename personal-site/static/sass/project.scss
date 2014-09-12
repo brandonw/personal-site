@@ -1,4 +1,9 @@
 // project specific CSS goes here
+$light: #f0e1bb;
+$medium-light: #beac91;
+$medium-dark: #a6907a;
+$dark: #344040;
+$color: #db4641;
 
 // bootstrap alert CSS, translated to the django-standard levels of
 // debug, info, success, warning, error
@@ -32,10 +37,164 @@
   border-color: #eed3d7;
 }
 
-.month-listing {
-  padding: 0px 0px 0px 15px;
+// navbar
+.navbar-inverse {
+  background-color: $dark;
+  background-image: inherit;
+  background-repeat: inherit;
+  box-shadow: inherit;
 }
 
-p.sm-tag-cloud {
-  max-width: 300px;
+.navbar-inverse .navbar-header button,
+.navbar-inverse .navbar-header button:hover,
+.navbar-inverse .navbar-header button:focus {
+  background-color: $light;
+}
+
+.navbar-inverse .navbar-header button span.icon-bar {
+  background-color: $dark;
+}
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-header > a {
+  color: $light;
+}
+
+@media (min-width: 768px) {
+  .navbar-inverse .navbar-nav > .active > a:hover,
+  .navbar-inverse .navbar-nav > .active > a:focus,
+  .navbar-inverse .navbar-nav > li > a:hover,
+  .navbar-inverse .navbar-nav > li > a:focus {
+    background-color: $dark;
+  }
+
+  .navbar-inverse .navbar-nav > .active > a,
+  .navbar-inverse .navbar-header > .active > a {
+    color: $light;
+    background-color: $dark;
+    padding-top: 12px;
+    border-top: 3px;
+    border-left: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: $light;
+    background-image: inherit;
+    background-repeat: inherit;
+    box-shadow: inherit;
+  }
+
+  .navbar-inverse .navbar-nav > li > a:hover,
+  .navbar-inverse .navbar-nav > li > a:focus {
+    padding-top: 12px;
+    border-top: 3px;
+    border-left: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: $color;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav > li > a:hover,
+  .navbar-inverse .navbar-nav > li > a:focus {
+    color: $dark;
+    background-color: $light;
+  }
+}
+
+// side menu
+#side-menu ul.nav-stacked > li > a:hover,
+#side-menu ul.nav-stacked > li > a:focus {
+  padding-left: 13px;
+  border-left: 2px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-radius: 0px;
+  border-style: solid;
+  border-color: $color;
+  background-color: $light;
+}
+
+// header
+div#header {
+  padding-top: 15px;
+}
+
+// body
+body {
+  padding-top: 50px;
+  background-color: $medium-light;
+  color: $dark;
+}
+
+hr {
+  border-color: $dark;
+}
+
+#content a {
+  color: $dark;
+  text-decoration: underline;
+}
+
+#content a:hover, a:focus {
+  color: $color;
+  text-decoration: underline;
+}
+
+// content
+div#content {
+  background-color: $light;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+// footer
+hr#footer {
+  margin-bottom: 5px;
+}
+
+// miscellaneous
+.color {
+  color: $color;
+}
+
+ul.nav-stacked > li > a {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: $dark;
+}
+
+#blog-pager {
+  padding-top: 25px;
+}
+
+#blog-pager a {
+  padding: 15px;
+  display: block;
+  text-decoration: underline;
+}
+
+ul#tagged-posts a,
+ul#project-list > li > a, {
+  color: $dark;
+  text-decoration: underline;
+}
+
+ul#tagged-posts a:hover,
+ul#tagged-posts a:focus,
+ul#project-list > li > a:hover,
+ul#project-list > li > a:focus {
+  color: $color;
+}
+
+ul#image-list > li > a > img {
+  background-color: $medium-light;
+}
+
+ul#image-list > li > a > img:hover,
+ul#image-list > li > a > img:focus {
+  background-color: $color;
 }

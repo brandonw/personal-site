@@ -1,24 +1,17 @@
-{% extends "projects/menu_base.html" %}
+{% extends "projects/base.html" %}
 
 {% block title %}Projects{% endblock %}
 
 {% block header %}
 
-<div class="page-header">
-    <h1 class="text-center heading">PROJECTS</h1>
-</div>
+<h1 class="text-center heading">PROJECTS</h1>
 
 {% endblock header %}
 
 {% block content %}
 {% load thumbnail %}
 
-<p class="lead text-justify">The following is a pruned list of projects I
-have worked on with a brief description. Click through to read a more
-in-depth summary of what the project is, as well as the reasons I worked on
-it, and my thought process while making it.</p>
-
-<ul class="list-unstyled">
+<ul id="project-list" class="list-unstyled">
 
 {% for project in projects %}
     <li>
@@ -34,8 +27,6 @@ it, and my thought process while making it.</p>
                      src="{{ im.url }}"
                      width="{{ im.width }}"
                      height="{{ im.height }}" />
-                {% empty %}
-                <p>No preview</p>
                 {% endthumbnail %}
                 {% endwith %}
                 {% endif %}

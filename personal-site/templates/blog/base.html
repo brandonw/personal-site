@@ -17,10 +17,10 @@
 {% endwith %}
 {% endfor %}
 </p>
-<hr />
-<h4>Blog archives</h4>
+
+<h4 id="blog-archives-header">Blog archives</h4>
 {% for day in posts %}
-    <h4>{{day.month}} {{ day.year }}</h4>
+    {{day.month}} {{ day.year }}
     <ul class="nav nav-pills nav-stacked">
     {% for post in day.posts %}
         <li>

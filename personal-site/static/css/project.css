@@ -209,3 +209,8 @@ ul#image-list > li > a > img:hover,
 ul#image-list > li > a > img:focus {
   background-color: #db4641;
 }
+
+/* line 202, ../sass/project.scss */
+h4#blog-archives-header {
+  margin-top: 25px;
+}

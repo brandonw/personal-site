@@ -1,5 +1,5 @@
 // project specific CSS goes here
-$light: #f0e1bb;
+$light: #ffffff;
 $medium-light: #beac91;
 $medium-dark: #a6907a;
 $dark: #344040;
@@ -125,6 +125,7 @@ div#header {
 
 // body
 body {
+  font-size: 18px;
   padding-top: 50px;
   background-color: $medium-light;
   color: $dark;
@@ -147,8 +148,6 @@ hr {
 // content
 div#content {
   background-color: $light;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
 }
 
 // footer

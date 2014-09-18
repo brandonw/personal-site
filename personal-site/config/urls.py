@@ -19,9 +19,6 @@ urlpatterns = patterns('',
     url(r'^resume/$',
         TemplateView.as_view(template_name='pages/resume.html'),
         name="resume"),
-    url(r'^resume.pdf$',
-        TemplateView.as_view(template_name='resume.pdf'),
-        name="pdfresume"),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),

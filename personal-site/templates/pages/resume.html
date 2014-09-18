@@ -6,33 +6,41 @@
 <li class="active"><a href="{% url 'resume' %}">R&#201;SUM&#201;</a></li>
 {% endblock %}
 
-{% block content %}
+{% block content-layout %}
+<div id="resume">
 
-<div class="container-fluid">
+    <div id="header-row" class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="page-header">
+                <h3 class="text-center">Brandon M. Waskiewicz</h3>
+            </div>
+            <p class="text-center"><a href="mailto:brandon.waskiewicz@gmail.com">brandon.waskiewicz@gmail.com</a></p>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-offset-2 col-md-2">
             <div><strong>OBJECTIVE</strong></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <p>A position focusing on Python development in a Linux environment with special
             interest in web applications.</p>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-offset-2 col-md-2">
             <div><strong>EDUCATION</strong></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <p><em>Bachelor of Science,</em> Computer Science<br />
             University of Massachusetts, Amherst, MA<br />
             Graduated With Honors</p>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-offset-2 col-md-2">
             <div><strong>COMPUTER SKILLS</strong></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <p><em>Languages:</em> C#, Python, C, Haskell, Rust, Vimscript<br />
             <em>Frameworks & Libraries:</em> ASP.NET MVC, Windows Forms, LINQ, Django<br />
             <em>Software & Tools:</em> Vim, git, svn, MSSQL, Visual Studio<br />
@@ -40,10 +48,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-offset-2 col-md-2">
             <div><strong>EXPERIENCE</strong></div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="clearfix">
                 <div class="pull-left"><em>Lead Software Engineer</em></div>
                 <div class="pull-right">Winter 2012-Present</div>
@@ -96,6 +104,12 @@
                 transitions and states of multiple generators and gas-burning flares, making the
                 process of bringing up or shutting down all systems easier faster.</li>
             </ul>
+        </div>
+    </div>
+
+    <div id="footer-row" class="row">
+        <div class="col-md-offset-4 col-md-6">
+            <p class="text-right">Download a PDF copy of this resume <a href="/static/resume.pdf">here</a>.
         </div>
     </div>
 </div>

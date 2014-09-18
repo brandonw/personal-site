@@ -67,8 +67,8 @@
         </nav>
 
         <div id="content" class="container">
+            {% block content-layout %}
             <div class="row">
-                {% block content-layout %}
                 <div class="col-md-offset-1 col-md-8">
                     {% if messages %}
                         {% for message in messages %}
@@ -88,8 +88,8 @@
                     {% block sidemenu %}
                     {% endblock sidemenu %}
                 </div>
-                {% endblock %}
             </div>
+            {% endblock %}
             <hr id="footer" />
             {% block footer %}
             <p class="text-center">Content Copyright &copy; {% now "Y" %} Brandon Waskiewicz, Color scheme by <a href="https://kuler.adobe.com/jazz-impressions-of-japan-color-theme-4256441/">mykolan</a></p>

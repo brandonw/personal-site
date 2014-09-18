@@ -213,3 +213,13 @@ ul#image-list > li > a > img:focus {
 h4#blog-archives-header {
   margin-top: 25px;
 }
+
+/* line 205, ../sass/project.scss */
+#resume #header-row.row {
+  margin-bottom: 50px;
+}
+
+/* line 209, ../sass/project.scss */
+#resume #footer-row.row {
+  margin-top: 50px;
+}

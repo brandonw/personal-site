@@ -8,9 +8,9 @@
 
 {% load taggit_extras %}
 
-<h4>Post tags</h4>
+<h3>Post tags</h3>
 {% get_tagcloud as tags for published_tags %}
-<p class="tags">
+<p id="tags">
 {% for tag in tags %}
 {% with size=tag.weight|floatformat:0 %}
 <span class="h{{ size }}"><a href="{% url 'blog-tag' tag.slug %}">{{ tag.name }}</a></span>
@@ -18,9 +18,9 @@
 {% endfor %}
 </p>
 
-<h4 id="blog-archives-header">Blog archives</h4>
+<h3 id="blog-archives-header">Blog archives</h3>
 {% for day in posts %}
-    {{day.month}} {{ day.year }}
+    <div id="datebreak">{{day.month}} {{ day.year }}</div>
     <ul class="nav nav-pills nav-stacked">
     {% for post in day.posts %}
         <li>

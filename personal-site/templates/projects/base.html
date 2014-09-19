@@ -6,7 +6,7 @@
 
 {% block sidemenu %}
 
-<h4>Project list</h4>
+<h3>Project list</h3>
 <ul class="nav nav-pills nav-stacked">
 {% for project in projects %}
     <li><a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a></li>

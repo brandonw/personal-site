@@ -41,34 +41,37 @@
   box-shadow: inherit;
 }
 
-/* line 50, ../sass/project.scss */
+/* line 51, ../sass/project.scss */
 .navbar-inverse .navbar-header button,
 .navbar-inverse .navbar-header button:hover,
-.navbar-inverse .navbar-header button:focus {
+.navbar-inverse .navbar-header button:focus,
+.navbar-inverse .navbar-header button:active {
   background-color: white;
 }
 
-/* line 54, ../sass/project.scss */
+/* line 55, ../sass/project.scss */
 .navbar-inverse .navbar-header button span.icon-bar {
   background-color: #344040;
 }
 
-/* line 59, ../sass/project.scss */
+/* line 60, ../sass/project.scss */
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-header > a {
   color: white;
 }
 
 @media (min-width: 768px) {
-  /* line 67, ../sass/project.scss */
+  /* line 70, ../sass/project.scss */
   .navbar-inverse .navbar-nav > .active > a:hover,
   .navbar-inverse .navbar-nav > .active > a:focus,
+  .navbar-inverse .navbar-nav > .active > a:active,
   .navbar-inverse .navbar-nav > li > a:hover,
-  .navbar-inverse .navbar-nav > li > a:focus {
+  .navbar-inverse .navbar-nav > li > a:focus,
+  .navbar-inverse .navbar-nav > li > a:active {
     background-color: #344040;
   }
 
-  /* line 72, ../sass/project.scss */
+  /* line 75, ../sass/project.scss */
   .navbar-inverse .navbar-nav > .active > a,
   .navbar-inverse .navbar-header > .active > a {
     color: white;
@@ -85,9 +88,10 @@
     box-shadow: inherit;
   }
 
-  /* line 88, ../sass/project.scss */
+  /* line 92, ../sass/project.scss */
   .navbar-inverse .navbar-nav > li > a:hover,
-  .navbar-inverse .navbar-nav > li > a:focus {
+  .navbar-inverse .navbar-nav > li > a:focus,
+  .navbar-inverse .navbar-nav > li > a:active {
     padding-top: 12px;
     border-top: 3px;
     border-left: 0px;
@@ -98,99 +102,66 @@
   }
 }
 @media (max-width: 767px) {
-  /* line 101, ../sass/project.scss */
+  /* line 106, ../sass/project.scss */
   .navbar-inverse .navbar-nav > li > a:hover,
-  .navbar-inverse .navbar-nav > li > a:focus {
+  .navbar-inverse .navbar-nav > li > a:focus,
+  .navbar-inverse .navbar-nav > li > a:active {
     color: #344040;
     background-color: white;
   }
 }
-/* line 108, ../sass/project.scss */
-#side-menu ul.nav-stacked > li > a {
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-
-/* line 114, ../sass/project.scss */
-#side-menu ul.nav-stacked > li > a:hover,
-#side-menu ul.nav-stacked > li > a:focus {
-  padding-left: 13px;
-  border-left: 2px;
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 0px;
-  border-radius: 0px;
-  border-style: solid;
-  border-color: #db4641;
-  background-color: white;
-}
-
-/* line 127, ../sass/project.scss */
+/* line 113, ../sass/project.scss */
 body {
-  font-size: 16px;
+  font-size: 18px;
   padding-top: 50px;
-  background-color: #beac91;
   color: #344040;
 }
 
-/* line 134, ../sass/project.scss */
+/* line 119, ../sass/project.scss */
 hr {
   border-color: #344040;
 }
 
-/* line 139, ../sass/project.scss */
-div#content {
-  background-color: white;
-}
-
-/* line 144, ../sass/project.scss */
-hr#footer {
-  margin-bottom: 5px;
-}
-
-/* line 149, ../sass/project.scss */
+/* line 124, ../sass/project.scss */
 .color {
   color: #db4641;
 }
 
-/* line 153, ../sass/project.scss */
+/* line 130, ../sass/project.scss */
+a > img.img-thumbnail:hover,
+a > img.img-thumbnail:focus,
+a > img.img-thumbnail:active {
+  background-color: #db4641;
+}
+
+/* line 136, ../sass/project.scss */
 ul.nav-stacked > li > a {
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-/* line 158, ../sass/project.scss */
+/* line 141, ../sass/project.scss */
 #blog-pager {
   padding-top: 25px;
 }
 
-/* line 162, ../sass/project.scss */
+/* line 145, ../sass/project.scss */
 #blog-pager a {
   padding: 15px;
   display: block;
 }
 
-/* line 167, ../sass/project.scss */
-ul#image-list > li > a > img {
-  background-color: #beac91;
-}
-
-/* line 171, ../sass/project.scss */
+/* line 150, ../sass/project.scss */
 h4#blog-archives-header {
   margin-top: 25px;
 }
 
-/* line 175, ../sass/project.scss */
-#resume #header-row.row {
+/* line 154, ../sass/project.scss */
+#resume #header-row {
   margin-bottom: 50px;
 }
 
-/* line 179, ../sass/project.scss */
-#resume #footer-row.row {
+/* line 158, ../sass/project.scss */
+#resume #footer-row {
   margin-top: 50px;
-}
-
-/* line 183, ../sass/project.scss */
-#tags, #datebreak {
-  padding-left: 15px;
 }

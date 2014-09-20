@@ -37,7 +37,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-offset-1 col-md-8">
+                    <div class="col-md-offset-2 col-md-8">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                     data-target="#navbar-collapse">
@@ -66,33 +66,20 @@
             </div>
         </nav>
 
-        <div id="content" class="container">
-            {% block content-layout %}
+        <div class="container">
             <div class="row">
-                <div class="col-md-offset-1 col-md-8">
+                <div class="col-md-offset-2 col-md-8">
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
                         {% endfor %}
                     {% endif %}
 
-                    <div id="header">
-                        {% block header %}
-                        {% endblock header %}
-                    </div>
                     {% block content %}
                     {% endblock content %}
                 </div>
-                <div id="side-menu" class="col-md-2">
-                    <div id="header"><h1 class="hidden-sm hidden-xs">&nbsp;</h1></div>
-                    {% block sidemenu %}
-                    {% endblock sidemenu %}
-                </div>
             </div>
-            {% endblock %}
-            <hr id="footer" />
             {% block footer %}
-            <p class="text-center">Content Copyright &copy; {% now "Y" %} Brandon Waskiewicz, Color scheme by <a href="https://kuler.adobe.com/jazz-impressions-of-japan-color-theme-4256441/">mykolan</a></p>
             {% endblock %}
         </div>
 

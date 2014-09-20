@@ -1,14 +1,16 @@
-{% extends "blog/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}{{ post.name }} - Blog{% endblock %}
 
-{% block header %}
-
-<h1 class="text-center">{{ post.name }}</h1>
-
-{% endblock header %}
+{% block menu-blog %}
+<li class="active"><a href="{% url 'blog' %}">BLOG</a></li>
+{% endblock %}
 
 {% block content %}
+
+<div class="page-header">
+    <h1>{{ post.name }}</h1>
+</div>
 
 <p>{{ html|safe }}</p>
 

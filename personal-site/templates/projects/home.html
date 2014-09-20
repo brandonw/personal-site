@@ -1,14 +1,17 @@
-{% extends "projects/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Projects{% endblock %}
 
-{% block header %}
-
-<h1 class="text-center">PROJECTS</h1>
-
-{% endblock header %}
+{% block menu-projects %}
+<li class="active"><a href="{% url 'projects' %}">PROJECTS</a></li>
+{% endblock %}
 
 {% block content %}
+
+<div class="page-header">
+    <h1>PROJECTS</h1>
+</div>
+
 {% load thumbnail %}
 
 <ul id="project-list" class="list-unstyled">

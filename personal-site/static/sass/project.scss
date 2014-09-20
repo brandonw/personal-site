@@ -47,7 +47,8 @@ $color: #db4641;
 
 .navbar-inverse .navbar-header button,
 .navbar-inverse .navbar-header button:hover,
-.navbar-inverse .navbar-header button:focus {
+.navbar-inverse .navbar-header button:focus,
+.navbar-inverse .navbar-header button:active {
   background-color: $light;
 }
 
@@ -63,8 +64,10 @@ $color: #db4641;
 @media (min-width: 768px) {
   .navbar-inverse .navbar-nav > .active > a:hover,
   .navbar-inverse .navbar-nav > .active > a:focus,
+  .navbar-inverse .navbar-nav > .active > a:active,
   .navbar-inverse .navbar-nav > li > a:hover,
-  .navbar-inverse .navbar-nav > li > a:focus {
+  .navbar-inverse .navbar-nav > li > a:focus,
+  .navbar-inverse .navbar-nav > li > a:active {
     background-color: $dark;
   }
 
@@ -85,7 +88,8 @@ $color: #db4641;
   }
 
   .navbar-inverse .navbar-nav > li > a:hover,
-  .navbar-inverse .navbar-nav > li > a:focus {
+  .navbar-inverse .navbar-nav > li > a:focus,
+  .navbar-inverse .navbar-nav > li > a:active {
     padding-top: 12px;
     border-top: 3px;
     border-left: 0px;
@@ -98,36 +102,17 @@ $color: #db4641;
 
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav > li > a:hover,
-  .navbar-inverse .navbar-nav > li > a:focus {
+  .navbar-inverse .navbar-nav > li > a:focus,
+  .navbar-inverse .navbar-nav > li > a:active {
     color: $dark;
     background-color: $light;
   }
 }
 
-// side menu
-#side-menu ul.nav-stacked > li > a {
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-
-#side-menu ul.nav-stacked > li > a:hover,
-#side-menu ul.nav-stacked > li > a:focus {
-  padding-left: 13px;
-  border-left: 2px;
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 0px;
-  border-radius: 0px;
-  border-style: solid;
-  border-color: $color;
-  background-color: $light;
-}
-
 // body
 body {
-  font-size: 16px;
+  font-size: 18px;
   padding-top: 50px;
-  background-color: $medium-light;
   color: $dark;
 }
 
@@ -135,20 +120,18 @@ hr {
   border-color: $dark;
 }
 
-// content
-div#content {
-  background-color: $light;
-}
-
-// footer
-hr#footer {
-  margin-bottom: 5px;
-}
-
 // miscellaneous
 .color {
   color: $color;
 }
+
+a > img.img-thumbnail:hover,
+a > img.img-thumbnail:focus,
+a > img.img-thumbnail:active {
+  background-color: $color;
+}
+
+
 
 ul.nav-stacked > li > a {
   padding-top: 5px;
@@ -164,22 +147,14 @@ ul.nav-stacked > li > a {
   display: block;
 }
 
-ul#image-list > li > a > img {
-  background-color: $medium-light;
-}
-
 h4#blog-archives-header {
   margin-top: 25px;
 }
 
-#resume #header-row.row {
+#resume #header-row {
   margin-bottom: 50px;
 }
 
-#resume #footer-row.row {
+#resume #footer-row {
   margin-top: 50px;
-}
-
-#tags, #datebreak {
-  padding-left: 15px;
 }

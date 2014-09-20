@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import Http404
 
@@ -9,48 +10,20 @@ from misc.code_blocks_preprocessor import CodeBlockExtension
 from taggit.models import Tag
 import markdown
 
-class BlogHomeView(TemplateView):
-    template_name = 'blog/post.html'
+class BlogHomeView(ListView):
+    template_name = 'blog/home.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Post.objects
+        else:
+            return Post.objects.filter(is_published=True)
 
     def get_context_data(self, **kwargs):
         context = super(BlogHomeView, self).get_context_data(**kwargs)
-
-        objects = Post.objects
-        if not self.request.user.is_superuser:
-            objects = objects.filter(is_published=True)
-
-        post_qty = objects.count()
-        if post_qty > 0:
-            post = objects.order_by('-pub_date')[0]
-            html = markdown.markdown(
-                    post.post_text,
-                    extensions=[CodeBlockExtension()])
-            context['post'] = post
-            context['html'] = html
-        if post_qty > 1:
-            context['prev'] = objects.order_by('-pub_date')[1]
-        context['posts'] = Post.objects.group_by_date(
-            self.request.user.is_superuser)
-        if 'post' not in context:
-            raise Http404
-
         context['published_tags'] = Post.objects.filter(is_published=True)
         return context
-
-def get_wrapped_posts(groups, slug):
-    prev = None
-    next = None
-    hit = False
-    for group in groups:
-        for post in group.posts:
-            if hit == False and post.slug != slug:
-                next = post
-            if hit == True:
-                prev = post
-                return (prev, next)
-            if post.slug == slug:
-                hit = True
-    return (prev, next)
 
 class BlogPostView(DetailView):
     context_object_name = 'post'
@@ -63,19 +36,9 @@ class BlogPostView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogPostView, self).get_context_data(**kwargs)
-
         context['html'] = markdown.markdown(
                 context['object'].post_text,
                 extensions=[CodeBlockExtension()])
-
-        groups = Post.objects.group_by_date(self.request.user.is_superuser)
-        context['posts'] = groups
-
-        (prev, next) = get_wrapped_posts(groups, self.kwargs['slug'])
-        context['prev'] = prev
-        context['next'] = next
-
-        context['published_tags'] = Post.objects.filter(is_published=True)
         return context
 
 class BlogTagView(TemplateView):
@@ -90,7 +53,6 @@ class BlogTagView(TemplateView):
             .filter(is_published=True)
             .filter(tags__name=tag.name)
             .distinct())
-        context['posts'] = Post.objects.group_by_date()
 
         context['published_tags'] = Post.objects.filter(is_published=True)
         return context

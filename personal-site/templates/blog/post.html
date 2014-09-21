@@ -25,22 +25,4 @@ posted {{ post.pub_date }}
 {% endfor %}
 </p>
 
-<div id="blog-pager" class="clearfix">
-    {% if prev %}
-    <div class="pull-left">
-        <a href="{% url 'blog-post' prev.pub_date.year prev.pub_date.month prev.pub_date.day prev.slug %}">
-            <h4>&larr; {{ prev.name }}</h4>
-        </a>
-    </div>
-    {% endif %}
-
-    {% if next %}
-    <div class="pull-right">
-        <a href="{% url 'blog-post' next.pub_date.year next.pub_date.month next.pub_date.day next.slug %}">
-            <h4>{{ next.name }} &rarr;</h4>
-        </a>
-    </div>
-    {% endif %}
-</div>
-
 {% endblock %}

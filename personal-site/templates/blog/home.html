@@ -12,17 +12,6 @@
     <h1>BLOG</h1>
 </div>
 
-{% load taggit_extras %}
-{% get_tagcloud as tags for published_tags %}
-<p id="tags">
-{% for tag in tags %}
-{% with size=tag.weight|floatformat:0 %}
-<span class="h{{ size }}"><a href="{% url 'blog-tag' tag.slug %}">{{ tag.name }}</a></span>
-{% endwith %}
-{% endfor %}
-</p>
-
-<h3 id="blog-archives-header">Blog archives</h3>
 <ul class="nav nav-pills nav-stacked">
 {% for post in posts %}
     <li>
@@ -30,6 +19,16 @@
                 {{ post.name }}</a>
     </li>
 {% endfor %}
+</ul>
+
+<ul class="pager">
+    {% if page_obj.has_previous %}
+    <li class="previous"><a href="?page={{ page_obj.previous_page_number }}">&larr; Previous</a></li>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+    <li class="next"><a href="?page={{ page_obj.next_page_number }}">Next &rarr;</a></li>
+    {% endif %}
 </ul>
 
 {% endblock %}

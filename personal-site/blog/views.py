@@ -6,13 +6,13 @@ from django.http import Http404
 
 from blog.models import Post
 from misc.code_blocks_preprocessor import CodeBlockExtension
-
 from taggit.models import Tag
 import markdown
 
 class BlogHomeView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
+    paginate_by = 10
 
     def get_queryset(self):
         if self.request.user.is_superuser:

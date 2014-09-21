@@ -45,7 +45,6 @@ class Common(Configuration):
         'avatar',  # for user avatars
         'sorl.thumbnail', # generating thumbnails of project images
         'taggit', # tag support for arbitrary models
-        'taggit_templatetags', # template tags for taggit
     )
 
     # Apps specific for this project go here.

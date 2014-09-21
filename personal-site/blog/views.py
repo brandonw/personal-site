@@ -2,12 +2,9 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.http import Http404
 
 from blog.models import Post
-from misc.code_blocks_preprocessor import CodeBlockExtension
 from taggit.models import Tag
-import markdown
 
 class BlogHomeView(ListView):
     template_name = 'blog/home.html'
@@ -15,15 +12,12 @@ class BlogHomeView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
+        posts = Post.objects.order_by('-pub_date')
+        print posts
         if self.request.user.is_superuser:
-            return Post.objects
+            return posts
         else:
-            return Post.objects.filter(is_published=True)
-
-    def get_context_data(self, **kwargs):
-        context = super(BlogHomeView, self).get_context_data(**kwargs)
-        context['published_tags'] = Post.objects.filter(is_published=True)
-        return context
+            return posts.filter(is_published=True)
 
 class BlogPostView(DetailView):
     context_object_name = 'post'
@@ -33,13 +27,6 @@ class BlogPostView(DetailView):
         if self.request.user.is_superuser:
             return Post.objects.all()
         return Post.objects.filter(is_published=True)
-
-    def get_context_data(self, **kwargs):
-        context = super(BlogPostView, self).get_context_data(**kwargs)
-        context['html'] = markdown.markdown(
-                context['object'].post_text,
-                extensions=[CodeBlockExtension()])
-        return context
 
 class BlogTagView(TemplateView):
     template_name = 'blog/tag.html'

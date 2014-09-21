@@ -4,33 +4,14 @@ from os.path import splitext, join
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItem, Tag
+from markdown import markdown
+from misc.code_blocks_preprocessor import CodeBlockExtension
 
 def get_image_name(post_image, original_name):
     extension = splitext(original_name)
     return join(post_image.post.slug + '-', post_image.name + extension[1])
 
-class PostGroup:
-    def __init__(self, year, month, posts):
-        self.year = year
-        self.month = month
-        self.posts = posts
-
-class PostManager(models.Manager):
-    def group_by_date(self, show_unpublished=False):
-        objects = Post.objects
-        if not show_unpublished:
-            objects = objects.filter(is_published=True)
-
-        dates = objects.datetimes('pub_date', 'month', order='DESC')
-        groups = [PostGroup(date.year, date.strftime('%B'),
-            objects.filter(pub_date__year=date.year)
-                   .filter(pub_date__month=date.month)
-                   .order_by('-pub_date')) for date in dates]
-        return groups
-
 class Post(models.Model):
-
-    objects = PostManager()
 
     # post timestamp
     pub_date = models.DateTimeField(verbose_name='Publish Date',
@@ -59,6 +40,15 @@ class Post(models.Model):
     # alternatively, create a new template tag that filters the posts
     # before returning the tags
     tags = TaggableManager(help_text='The tags to categorize this post by.')
+
+    def get_preview(self):
+        (before, sep, after) = self.post_text.partition('<!--break-->')
+        if sep == '':
+            return ''
+        return markdown(before, extensions=[CodeBlockExtension()])
+
+    def get_full(self):
+        return markdown(self.post_text, extensions=[CodeBlockExtension()])
 
     def __unicode__(self):
         if self.is_published:

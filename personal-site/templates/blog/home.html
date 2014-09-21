@@ -12,14 +12,29 @@
     <h1>BLOG</h1>
 </div>
 
-<ul class="nav nav-pills nav-stacked">
+<ul class="list-group">
 {% for post in posts %}
-    <li>
-        <a href="{% url 'blog-post' post.pub_date.year post.pub_date.month post.pub_date.day post.slug %}">
+    <li class="list-group-item">
+        <h3>
+            <a href="{% url 'blog-post' post.pub_date.year post.pub_date.month post.pub_date.day post.slug %}">
                 {{ post.name }}</a>
+
+            <small>
+                {{ post.pub_date }}
+
+                {% for tag in post.tags.all %}
+                {% if forloop.last %}
+                    <a href="{% url 'blog-tag' tag.slug %}">{{ tag.name }}</a>
+                {% else %}
+                    <a href="{% url 'blog-tag' tag.slug %}">{{ tag.name }}</a>,
+                {% endif %}
+                {% endfor %}
+            </small>
+        </h3>
+        <div>{{ post.get_preview|safe }}</div>
     </li>
 {% endfor %}
-</ul>
+</div>
 
 <ul class="pager">
     {% if page_obj.has_previous %}

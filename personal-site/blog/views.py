@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.syndication.views import Feed
+from django.utils.feedgenerator import Atom1Feed
 
 from blog.models import Post
 from taggit.models import Tag
@@ -43,3 +45,21 @@ class BlogTagView(TemplateView):
 
         context['published_tags'] = Post.objects.filter(is_published=True)
         return context
+
+class BlogRssFeed(Feed):
+    title = "Brandon Waskiewicz's blog"
+    link = '/blog/'
+    description = 'Inside my head'
+
+    def items(self):
+        return Post.objects.filter(is_published=True).order_by('-pub_date')
+
+    def item_title(self, item):
+        return item.name
+
+    def item_description(self, item):
+        return item.get_preview()
+
+class BlogAtomFeed(BlogRssFeed):
+    feed_type = Atom1Feed
+    subtitle = BlogRssFeed.title

@@ -19,5 +19,11 @@ urlpatterns = patterns('',
         views.BlogTagView.as_view(),
         name='blog-tag'
     ),
+    url(
+        r'^rss/$',
+        views.BlogRssFeed()),
+    url(
+        r'^atom/$',
+        views.BlogAtomFeed()),
 )
 

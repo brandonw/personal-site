@@ -14,31 +14,29 @@
 
 {% load thumbnail %}
 
-<ul id="project-list" class="list-unstyled">
-
 {% for project in projects %}
-    <li>
-        <a href="{% url 'project-detail' project.slug %}">
-            <h2 id="{{project.slug}}">{{ project.name }}</h2>
-        </a>
-        <div class="row">
-            <div class="col-xs-4">
-                {% if project.projectimage_set.count > 0 %}
-                {% with image=project.projectimage_set.all.0.image %}
-                {% thumbnail image "150x150" crop="center" as im %}
-                <img class="img-thumbnail"
-                     src="{{ im.url }}"
-                     width="{{ im.width }}"
-                     height="{{ im.height }}" />
-                {% endthumbnail %}
-                {% endwith %}
-                {% endif %}
-            </div>
-            <div class="col-xs-8">
-                <p>short_descr: {{ project.short_descr }}</p>
-            </div>
+<div class="page-header">
+    <a href="{% url 'project-detail' project.slug %}">
+        <h2 id="{{project.slug}}">{{ project.name }}</h2>
+    </a>
+    <div class="row">
+        <div class="col-xs-4">
+            {% if project.projectimage_set.count > 0 %}
+            {% with image=project.projectimage_set.all.0.image %}
+            {% thumbnail image "150x150" crop="center" as im %}
+            <img class="img-thumbnail"
+                 src="{{ im.url }}"
+                 width="{{ im.width }}"
+                 height="{{ im.height }}" />
+            {% endthumbnail %}
+            {% endwith %}
+            {% endif %}
         </div>
-    </li>
+        <div class="col-xs-8">
+            <p>short_descr: {{ project.short_descr }}</p>
+        </div>
+    </div>
+</div>
 {% endfor %}
 
 </ul>

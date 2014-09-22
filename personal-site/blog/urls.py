@@ -21,9 +21,11 @@ urlpatterns = patterns('',
     ),
     url(
         r'^rss/$',
-        views.BlogRssFeed()),
+        views.BlogRssFeed(),
+        name='rss'),
     url(
         r'^atom/$',
-        views.BlogAtomFeed()),
+        views.BlogAtomFeed(),
+        name='atom'),
 )
 

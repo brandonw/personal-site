@@ -15,7 +15,6 @@ class BlogHomeView(ListView):
 
     def get_queryset(self):
         posts = Post.objects.order_by('-pub_date')
-        print posts
         if self.request.user.is_superuser:
             return posts
         else:

@@ -18,7 +18,7 @@ class Post(models.Model):
         help_text='The date and time the post was published.')
 
     # display post to the public
-    is_published = models.BooleanField(
+    is_published = models.BooleanField(default=False,
         help_text='Whether or not to make the post visible to visitors.')
 
     # name of post

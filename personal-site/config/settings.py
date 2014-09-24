@@ -40,7 +40,6 @@ class Common(Configuration):
         'django.contrib.admin',
     )
     THIRD_PARTY_APPS = (
-        'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
         'sorl.thumbnail', # generating thumbnails of project images
@@ -267,12 +266,6 @@ class Common(Configuration):
 
 
     ########## Your common stuff: Below this line define 3rd party libary settings
-
-    ########## SOUTH MIGRATION MODULES
-    SOUTH_MIGRATION_MODULES = {
-        'taggit': 'taggit.south_migrations',
-    }
-    ########## END SOUTH MIGRATION MODULES
 
     ########## DJANGO-TAGGIT-TEMPLATETAGS
     TAGGIT_TAGCLOUD_MIN=6.0

@@ -7,7 +7,7 @@
 - name: Create database user
   sudo: yes
   sudo_user: postgres
-  postgresql_user: db=personal-site name=vagrant state=present
+  postgresql_user: name=vagrant role_attr_flags=CREATEDB state=present
 
 - name: Sync DB
   django_manage: app_path=/vagrant/personal-site command=syncdb

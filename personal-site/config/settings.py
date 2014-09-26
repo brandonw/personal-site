@@ -18,6 +18,8 @@ from configurations import Configuration, values
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 def show_toolbar(request):
+    if request.is_ajax():
+        return False
     return True
 
 
@@ -291,7 +293,7 @@ class Local(Common):
 
     ########## django-debug-toolbar
     MIDDLEWARE_CLASSES = Common.MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-    INSTALLED_APPS += ('debug_toolbar',)
+    INSTALLED_APPS += ('debug_toolbar.apps.DebugToolbarConfig',)
 
     INTERNAL_IPS = ('127.0.0.1',)
 

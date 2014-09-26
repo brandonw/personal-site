@@ -303,11 +303,10 @@ class Local(Common):
     }
     ########## end django-debug-toolbar
 
+    ########## Your local stuff: Below this line define 3rd party libary settings
+
     ######### sorl-thumbnail
     THUMBNAIL_DEBUG = True
-    ######## end sorl-thumbnail
-
-    ########## Your local stuff: Below this line define 3rd party libary settings
 
 
 class Production(Common):
@@ -373,3 +372,6 @@ class Production(Common):
     ########## END CACHING
 
     ########## Your production stuff: Below this line define 3rd party libary settings
+
+    ######### sorl-thumbnail
+    THUMBNAIL_DEBUG = False

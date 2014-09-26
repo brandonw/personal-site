@@ -17,3 +17,8 @@
 
 - name: Symlink static files to staticfiles dir
   command: python /vagrant/personal-site/manage.py collectstatic --noinput -l -i sass
+
+- name: Add dummy Production env vars
+  lineinfile: dest=/home/vagrant/.profile line='export DJANGO_SECRET_KEY=foo'
+  lineinfile: dest=/home/vagrant/.profile line='export SENDGRID_USERNAME=foo'
+  lineinfile: dest=/home/vagrant/.profile line='export SENDGRID_PASSWORD=foo'

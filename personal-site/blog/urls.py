@@ -15,7 +15,7 @@ urlpatterns = patterns('',
         name='blog-post'
     ),
     url(
-        r'^tags/(?P<slug>[\w-]+)/$',
+        r'^tag/(?P<slug>[\w-]+)/$',
         views.BlogTagView.as_view(),
         name='blog-tag'
     ),

@@ -9,7 +9,7 @@ from misc.code_blocks_preprocessor import CodeBlockExtension
 
 def get_image_name(post_image, original_name):
     extension = splitext(original_name)
-    return join(post_image.post.slug + '-', post_image.name + extension[1])
+    return post_image.post.slug + '-' + post_image.name + extension[1]
 
 class Post(models.Model):
 
